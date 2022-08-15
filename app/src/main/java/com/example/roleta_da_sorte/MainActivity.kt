@@ -2,6 +2,7 @@ package com.example.roleta_da_sorte
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -9,7 +10,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -45,6 +48,14 @@ class MainActivity : AppCompatActivity() {
 
             result.text = if (numberTyped.text.toString() == random.toString()) "PARABENS!!!" else "ERRO!!!"
             result.setTextColor(if (result.text.equals("PARABENS!!!")) Color.parseColor("#FF018786") else Color.parseColor("#FF0000"))
+
+            if (result.text.equals("PARABENS!!!")) {
+                img_result.isVisible = true
+                img_resultDown.isVisible = false
+            } else {
+                img_result.isVisible = false
+                img_resultDown.isVisible = true
+            }
 
             hideKeyboard()
         }
